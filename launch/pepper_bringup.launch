@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot_ip"          default="$(optenv NAO_IP 192.168.100.77)" /> <!-- 127.0.0.1 -->
+  <arg name="robot_port"        default="$(optenv NAO_PORT 9559)" />
+  <arg name="roscore_ip"        default="127.0.0.1" />
+  <arg name="network_interface" default="eno1" />
+  <arg name="namespace"         default="naoqi_driver" />
+  <arg name="user"              default="nao" />
+  <arg name="password"          default="no_password" />
+
+ 	<!-- Call Robot publisher -->
+  <include file="$(find pepper_description)/launch/pepper_upload.launch" />
+  <!-- <include file="$(find pepper_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include> -->
+
+  <!-- Call Robot Trajectory Controller -->
+  <include file="$(find pepper_controller_server)/launch/pepper_controller_server.launch"/>
+  <node pkg="tf" type="static_transform_publisher" name="vake_base_link_publisher" args="0 0 0.82 0 0 0 base_footprint base_link_fake 100" />
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name ="robot_state_publisher"/>
+  <!-- Only needed for external calibration with apriltag_ros -->
+  <!-- <node pkg="nodelet" type="nodelet" args="manager" name="pepper_nodelet" output="screen"/>
+	<node pkg="nodelet" type="nodelet" name="image_proc_debayer" args="load image_proc/debayer pepper_nodelet">
+			<remap from="image_raw" to="/naoqi_driver/camera/front/image_raw"/>
+			<remap from="image_mono" to="/naoqi_driver/camera/front/image_mono"/>
+			<remap from="image_color" to="/naoqi_driver/camera/front/image_color"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="image_proc_rectify" args="load image_proc/rectify pepper_nodelet">
+			<remap from="image_mono" to="/naoqi_driver/camera/front/image_mono"/>
+			<remap from="camera_info" to="/naoqi_driver/camera/front/camera_info"/>
+			<remap from="image_rect" to="/naoqi_driver/camera/front/image_rect"/>
+  </node> -->
+
+  
+  <!-- Call Robot Driver -->
+  <node pkg="naoqi_dcm_driver" type="naoqi_dcm_driver" name="naoqi_dcm_driver" respawn="false" output="screen" >
+    <rosparam file="$(find mild_hri_ros)/config/pepper_dcm.yaml" command="load"/>
+    <rosparam file="$(find pepper_controller_server)/config/pepper_rhand_position_stiffness.yaml" command="load"/>
+    <param name="RobotIP"             value="$(arg robot_ip)" />
+    <param name="RobotPort"           value="$(arg robot_port)" />
+    <param name="DriverBrokerIP"      value="$(arg roscore_ip)" />
+    <param name="network_interface"   value="$(arg network_interface)" />
+    <param name="Prefix"              value="pepper_dcm" />
+    <param name="motor_groups"        value="RArm" />
+    <param name="use_dcm"             value="false" />
+    <param name="max_stiffness"       value="0.9" />
+  </node>
+	
+</launch>

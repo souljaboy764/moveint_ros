@@ -1,0 +1,115 @@
+digraph robot {
+	link_base_link [label=base_link color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_torso_joint [label=torso_joint color=green fillcolor=lightgrey style=filled]
+	link_base_link -> joint_torso_joint
+	link_torso [label=torso color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_torso_joint -> link_torso
+	joint_blaise_ptu_mount_joint [label=blaise_ptu_mount_joint color=green fillcolor=lightgrey style=filled]
+	link_torso -> joint_blaise_ptu_mount_joint
+	link_blaise_ptu_mount [label=blaise_ptu_mount color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_blaise_ptu_mount_joint -> link_blaise_ptu_mount
+	joint_blaise_head_mount_joint [label=blaise_head_mount_joint color=green fillcolor=lightgrey style=filled]
+	link_torso -> joint_blaise_head_mount_joint
+	link_blaise_head_mount [label=blaise_head_mount color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_blaise_head_mount_joint -> link_blaise_head_mount
+	joint_panda_right_joint_torso [label=panda_right_joint_torso color=green fillcolor=lightgrey style=filled]
+	link_torso -> joint_panda_right_joint_torso
+	link_panda_right_link0 [label=panda_right_link0 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_joint_torso -> link_panda_right_link0
+	joint_panda_right_joint1 [label=panda_right_joint1 color=green fillcolor=lightgrey style=filled]
+	link_panda_right_link0 -> joint_panda_right_joint1
+	link_panda_right_link1 [label=panda_right_link1 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_joint1 -> link_panda_right_link1
+	joint_panda_right_joint2 [label=panda_right_joint2 color=green fillcolor=lightgrey style=filled]
+	link_panda_right_link1 -> joint_panda_right_joint2
+	link_panda_right_link2 [label=panda_right_link2 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_joint2 -> link_panda_right_link2
+	joint_panda_right_joint3 [label=panda_right_joint3 color=green fillcolor=lightgrey style=filled]
+	link_panda_right_link2 -> joint_panda_right_joint3
+	link_panda_right_link3 [label=panda_right_link3 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_joint3 -> link_panda_right_link3
+	joint_panda_right_joint4 [label=panda_right_joint4 color=green fillcolor=lightgrey style=filled]
+	link_panda_right_link3 -> joint_panda_right_joint4
+	link_panda_right_link4 [label=panda_right_link4 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_joint4 -> link_panda_right_link4
+	joint_panda_right_joint5 [label=panda_right_joint5 color=green fillcolor=lightgrey style=filled]
+	link_panda_right_link4 -> joint_panda_right_joint5
+	link_panda_right_link5 [label=panda_right_link5 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_joint5 -> link_panda_right_link5
+	joint_panda_right_joint6 [label=panda_right_joint6 color=green fillcolor=lightgrey style=filled]
+	link_panda_right_link5 -> joint_panda_right_joint6
+	link_panda_right_link6 [label=panda_right_link6 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_joint6 -> link_panda_right_link6
+	joint_panda_right_joint7 [label=panda_right_joint7 color=green fillcolor=lightgrey style=filled]
+	link_panda_right_link6 -> joint_panda_right_joint7
+	link_panda_right_link7 [label=panda_right_link7 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_joint7 -> link_panda_right_link7
+	joint_panda_right_joint8 [label=panda_right_joint8 color=green fillcolor=lightgrey style=filled]
+	link_panda_right_link7 -> joint_panda_right_joint8
+	link_panda_right_link8 [label=panda_right_link8 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_joint8 -> link_panda_right_link8
+	joint_panda_right_hand_joint [label=panda_right_hand_joint color=green fillcolor=lightgrey style=filled]
+	link_panda_right_link8 -> joint_panda_right_hand_joint
+	link_panda_right_hand [label=panda_right_hand color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_hand_joint -> link_panda_right_hand
+	joint_panda_right_finger_joint1 [label=panda_right_finger_joint1 color=green fillcolor=lightgrey style=filled]
+	link_panda_right_hand -> joint_panda_right_finger_joint1
+	link_panda_right_leftfinger [label=panda_right_leftfinger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_finger_joint1 -> link_panda_right_leftfinger
+	joint_panda_right_finger_joint2 [label=panda_right_finger_joint2 color=green fillcolor=lightgrey style=filled]
+	link_panda_right_hand -> joint_panda_right_finger_joint2
+	link_panda_right_rightfinger [label=panda_right_rightfinger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_right_finger_joint2 -> link_panda_right_rightfinger
+	joint_panda_left_joint_torso [label=panda_left_joint_torso color=green fillcolor=lightgrey style=filled]
+	link_torso -> joint_panda_left_joint_torso
+	link_panda_left_link0 [label=panda_left_link0 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_joint_torso -> link_panda_left_link0
+	joint_panda_left_joint1 [label=panda_left_joint1 color=green fillcolor=lightgrey style=filled]
+	link_panda_left_link0 -> joint_panda_left_joint1
+	link_panda_left_link1 [label=panda_left_link1 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_joint1 -> link_panda_left_link1
+	joint_panda_left_joint2 [label=panda_left_joint2 color=green fillcolor=lightgrey style=filled]
+	link_panda_left_link1 -> joint_panda_left_joint2
+	link_panda_left_link2 [label=panda_left_link2 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_joint2 -> link_panda_left_link2
+	joint_panda_left_joint3 [label=panda_left_joint3 color=green fillcolor=lightgrey style=filled]
+	link_panda_left_link2 -> joint_panda_left_joint3
+	link_panda_left_link3 [label=panda_left_link3 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_joint3 -> link_panda_left_link3
+	joint_panda_left_joint4 [label=panda_left_joint4 color=green fillcolor=lightgrey style=filled]
+	link_panda_left_link3 -> joint_panda_left_joint4
+	link_panda_left_link4 [label=panda_left_link4 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_joint4 -> link_panda_left_link4
+	joint_panda_left_joint5 [label=panda_left_joint5 color=green fillcolor=lightgrey style=filled]
+	link_panda_left_link4 -> joint_panda_left_joint5
+	link_panda_left_link5 [label=panda_left_link5 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_joint5 -> link_panda_left_link5
+	joint_panda_left_joint6 [label=panda_left_joint6 color=green fillcolor=lightgrey style=filled]
+	link_panda_left_link5 -> joint_panda_left_joint6
+	link_panda_left_link6 [label=panda_left_link6 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_joint6 -> link_panda_left_link6
+	joint_panda_left_joint7 [label=panda_left_joint7 color=green fillcolor=lightgrey style=filled]
+	link_panda_left_link6 -> joint_panda_left_joint7
+	link_panda_left_link7 [label=panda_left_link7 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_joint7 -> link_panda_left_link7
+	joint_panda_left_joint8 [label=panda_left_joint8 color=green fillcolor=lightgrey style=filled]
+	link_panda_left_link7 -> joint_panda_left_joint8
+	link_panda_left_link8 [label=panda_left_link8 color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_joint8 -> link_panda_left_link8
+	joint_panda_left_hand_joint [label=panda_left_hand_joint color=green fillcolor=lightgrey style=filled]
+	link_panda_left_link8 -> joint_panda_left_hand_joint
+	link_panda_left_hand [label=panda_left_hand color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_hand_joint -> link_panda_left_hand
+	joint_panda_left_finger_joint1 [label=panda_left_finger_joint1 color=green fillcolor=lightgrey style=filled]
+	link_panda_left_hand -> joint_panda_left_finger_joint1
+	link_panda_left_leftfinger [label=panda_left_leftfinger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_finger_joint1 -> link_panda_left_leftfinger
+	joint_panda_left_finger_joint2 [label=panda_left_finger_joint2 color=green fillcolor=lightgrey style=filled]
+	link_panda_left_hand -> joint_panda_left_finger_joint2
+	link_panda_left_rightfinger [label=panda_left_rightfinger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_panda_left_finger_joint2 -> link_panda_left_rightfinger
+	joint_upper_body_joint [label=upper_body_joint color=green fillcolor=lightgrey style=filled]
+	link_base_link -> joint_upper_body_joint
+	link_upper_body_link [label=upper_body_link color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_upper_body_joint -> link_upper_body_link
+}

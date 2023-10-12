@@ -1,0 +1,5 @@
+<launch>
+	<node name="rviz" type="rviz" pkg="rviz" args="-d $(find rmdn_hri_ros)/launch/kobo_handover.rviz"/>
+	<node name="usb_cam_node" type="usb_cam_node" pkg="usb_cam"/>
+
+</launch>

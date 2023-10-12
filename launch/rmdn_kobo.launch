@@ -1,0 +1,7 @@
+<launch>
+	<node name="rmdn_node" type="rmdn_kobo_node.py" pkg="rmdn_hri_ros" required="true"/>
+	<node pkg="rosbag" type="record" name="rosbag_record"
+       args="record -o combined /tf /panda_dual/joint_states /panda_dual/dual_arm_cartesian_impedance_controller/centering_frame_target_pose /visualization_marker_array /usb_cam_node/image_raw"/>   
+
+
+</launch>

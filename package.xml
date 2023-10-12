@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rmdn_hri_ros</name>
+  <version>0.0.0</version>
+  <description>ROS Package to run the RMDN-HRI models on the Kobo Robot</description>
+
+  <maintainer email="vignesh.prasad@tu-darmstadt.de">Vignesh Prasad</maintainer>
+  <license>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</license>
+
+  <url type="website">https://sites.google.com/view/rmdn-hri</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>image_transport</depend>
+  <depend>rospy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>visualization_msgs</depend>
+  
+</package>

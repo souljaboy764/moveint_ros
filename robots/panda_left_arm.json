@@ -1,0 +1,47 @@
+{
+  "elements": [
+    "base_link",
+    "torso_joint",
+    "torso",
+    "panda_left_joint_torso",
+    "panda_left_link0",
+    "panda_left_joint1",
+    "panda_left_link1",
+    "panda_left_joint2",
+    "panda_left_link2",
+    "panda_left_joint3",
+    "panda_left_link3",
+    "panda_left_joint4",
+    "panda_left_link4",
+    "panda_left_joint5",
+    "panda_left_link5",
+    "panda_left_joint6",
+    "panda_left_link6",
+    "panda_left_joint7",
+    "panda_left_link7",
+    "panda_left_joint8"
+  ],
+  "urdf_file": "blaise_panda_dual.urdf",
+  "active_links_mask": [
+    false,
+    false,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false
+  ],
+  "last_link_vector": [
+    0,
+    0.0,
+    0.1034
+  ],
+  "name": "panda_left_arm",
+  "version": "v1"
+}
