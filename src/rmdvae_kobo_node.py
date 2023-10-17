@@ -53,7 +53,7 @@ class RMDVAEHRINode:
 
 	def make_marker(self, x, y, z, r, g, b, stamp):
 		marker = Marker()
-		marker.ns = "rmdvae_handover"
+		marker.ns = "rmdvae_gen"
 		marker.header.frame_id = 'base_link'
 		marker.id = len(self.robot_endeff_msg.markers)
 		marker.lifetime = rospy.Duration(0)

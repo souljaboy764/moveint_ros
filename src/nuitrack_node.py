@@ -183,19 +183,20 @@ class NuitrackROS(NuitrackWrapper):
 		
 		if self._viz_pub.get_num_connections() > 0 and len(skeleton)>0:
 			# for i in range(14):
-			for i in [-4,-3,-2]:
+			for i in [10,11,12]:
 				self._markerarray_msg.markers[i].pose = mat2Pose(skeleton[i])
-				self._markerarray_msg.markers[i].header = self._header
-
+				
 			# for i in range(len(connections)):
-			# 	bone = connections[i]
-			# 	self._markerarray_msg.markers[i+14].points[0].x = skeleton[joints_idx[bone[0]]-1,0]
-			# 	self._markerarray_msg.markers[i+14].points[0].y = skeleton[joints_idx[bone[0]]-1,1]
-			# 	self._markerarray_msg.markers[i+14].points[0].z = skeleton[joints_idx[bone[0]]-1,2]
-			# 	self._markerarray_msg.markers[i+14].points[1].x = skeleton[joints_idx[bone[1]]-1,0]
-			# 	self._markerarray_msg.markers[i+14].points[1].y = skeleton[joints_idx[bone[1]]-1,1]
-			# 	self._markerarray_msg.markers[i+14].points[1].z = skeleton[joints_idx[bone[1]]-1,2]
-			# 	self._markerarray_msg.markers[i+14].header = self._header
+				if i!=12:
+					bone = connections[i]
+					self._markerarray_msg.markers[i+14].points[0].x = skeleton[joints_idx[bone[0]]-1,0]
+					self._markerarray_msg.markers[i+14].points[0].y = skeleton[joints_idx[bone[0]]-1,1]
+					self._markerarray_msg.markers[i+14].points[0].z = skeleton[joints_idx[bone[0]]-1,2]
+					self._markerarray_msg.markers[i+14].points[1].x = skeleton[joints_idx[bone[1]]-1,0]
+					self._markerarray_msg.markers[i+14].points[1].y = skeleton[joints_idx[bone[1]]-1,1]
+					self._markerarray_msg.markers[i+14].points[1].z = skeleton[joints_idx[bone[1]]-1,2]
+			for i in range(len(self._markerarray_msg.markers)):
+				self._markerarray_msg.markers[i].header = self._header
 			self._viz_pub.publish(self._markerarray_msg)
 
 		return display_img, skeleton, self._header.stamp
