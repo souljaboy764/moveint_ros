@@ -1,0 +1,31 @@
+!!python/object/new:dynamic_reconfigure.encoding.Config
+dictitems:
+  groups: !!python/object/new:dynamic_reconfigure.encoding.Config
+    dictitems:
+      groups: !!python/object/new:dynamic_reconfigure.encoding.Config
+        state: []
+      id: 0
+      name: Default
+      parameters: !!python/object/new:dynamic_reconfigure.encoding.Config
+        state: []
+      parent: 0
+      pitch: 0.25
+      roll: 0.0
+      source_frame: base_link
+      state: true
+      target_frame: camera_base
+      type: ''
+      x: 0.16
+      y: 0.0
+      yaw: 0.1256636
+      z: 0.87
+    state: []
+  pitch: 0.25
+  roll: 0.0
+  source_frame: base_link
+  target_frame: camera_base
+  x: 0.16
+  y: 0.0
+  yaw: 0.1256636
+  z: 0.87
+state: []

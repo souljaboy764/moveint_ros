@@ -7,14 +7,9 @@ Panels:
         - /Global Options1
         - /Status1
         - /TF1/Frames1
-        - /RobotModel1
-        - /Pose1
-        - /PoseArray1
-        - /PoseArray2
-        - /PoseArray3
-        - /PoseArray4
         - /MarkerArray1
         - /Image1
+        - /MarkerArray2
       Splitter Ratio: 0.4150664806365967
     Tree Height: 1630
   - Class: rviz/Selection
@@ -61,12 +56,154 @@ Visualization Manager:
       Reference Frame: <Fixed Frame>
       Value: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Filter (blacklist): ""
       Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        Ankle_left0:
+          Value: false
+        Ankle_right0:
+          Value: false
+        Clavicle_left0:
+          Value: false
+        Clavicle_right0:
+          Value: false
+        Ear_Left0:
+          Value: false
+        Ear_Right0:
+          Value: false
+        Elbow_left0:
+          Value: false
+        Elbow_right0:
+          Value: false
+        Eye_Left0:
+          Value: false
+        Eye_Right0:
+          Value: false
+        Foot_left0:
+          Value: false
+        Foot_right0:
+          Value: false
+        Hand_left0:
+          Value: false
+        Hand_right0:
+          Value: false
+        Handtip_left0:
+          Value: false
+        Handtip_right0:
+          Value: false
+        Head0:
+          Value: false
+        Hip_left0:
+          Value: false
+        Hip_right0:
+          Value: false
+        Knee_left0:
+          Value: false
+        Knee_right0:
+          Value: false
+        Neck0:
+          Value: false
+        Nose0:
+          Value: false
+        Pelvis0:
+          Value: false
+        Shoulder_left0:
+          Value: false
+        Shoulder_right0:
+          Value: false
+        Spine_Chest0:
+          Value: false
+        Spine_Naval0:
+          Value: false
+        Thumb_right0:
+          Value: false
+        Wrist_left0:
+          Value: false
+        Wrist_right0:
+          Value: false
+        base_link:
+          Value: false
+        blaise_head_mount:
+          Value: false
+        blaise_ptu_mount:
+          Value: false
+        camera_base:
+          Value: false
+        camera_body:
+          Value: false
+        camera_visor:
+          Value: false
+        depth_camera_link:
+          Value: true
+        imu_link:
+          Value: false
+        panda_left_EE:
+          Value: false
+        panda_left_K:
+          Value: false
+        panda_left_hand:
+          Value: false
+        panda_left_leftfinger:
+          Value: false
+        panda_left_link0:
+          Value: false
+        panda_left_link1:
+          Value: false
+        panda_left_link2:
+          Value: false
+        panda_left_link3:
+          Value: false
+        panda_left_link4:
+          Value: false
+        panda_left_link5:
+          Value: false
+        panda_left_link6:
+          Value: false
+        panda_left_link7:
+          Value: false
+        panda_left_link8:
+          Value: false
+        panda_left_rightfinger:
+          Value: false
+        panda_right_EE:
+          Value: false
+        panda_right_K:
+          Value: false
+        panda_right_hand:
+          Value: false
+        panda_right_leftfinger:
+          Value: false
+        panda_right_link0:
+          Value: false
+        panda_right_link1:
+          Value: false
+        panda_right_link2:
+          Value: false
+        panda_right_link3:
+          Value: false
+        panda_right_link4:
+          Value: false
+        panda_right_link5:
+          Value: false
+        panda_right_link6:
+          Value: false
+        panda_right_link7:
+          Value: false
+        panda_right_link8:
+          Value: false
+        panda_right_rightfinger:
+          Value: false
+        rgb_camera_link:
+          Value: false
+        thumb_left0:
+          Value: false
+        torso:
+          Value: false
+        upper_body_link:
+          Value: false
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -74,9 +211,123 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        base_link:
+          camera_base:
+            camera_body:
+              {}
+            camera_visor:
+              {}
+            depth_camera_link:
+              imu_link:
+                {}
+              rgb_camera_link:
+                Ankle_left0:
+                  {}
+                Ankle_right0:
+                  {}
+                Clavicle_left0:
+                  {}
+                Clavicle_right0:
+                  {}
+                Ear_Left0:
+                  {}
+                Ear_Right0:
+                  {}
+                Elbow_left0:
+                  {}
+                Elbow_right0:
+                  {}
+                Eye_Left0:
+                  {}
+                Eye_Right0:
+                  {}
+                Foot_left0:
+                  {}
+                Foot_right0:
+                  {}
+                Hand_left0:
+                  {}
+                Hand_right0:
+                  {}
+                Handtip_left0:
+                  {}
+                Handtip_right0:
+                  {}
+                Head0:
+                  {}
+                Hip_left0:
+                  {}
+                Hip_right0:
+                  {}
+                Knee_left0:
+                  {}
+                Knee_right0:
+                  {}
+                Neck0:
+                  {}
+                Nose0:
+                  {}
+                Pelvis0:
+                  {}
+                Shoulder_left0:
+                  {}
+                Shoulder_right0:
+                  {}
+                Spine_Chest0:
+                  {}
+                Spine_Naval0:
+                  {}
+                Thumb_right0:
+                  {}
+                Wrist_left0:
+                  {}
+                Wrist_right0:
+                  {}
+                thumb_left0:
+                  {}
+          torso:
+            blaise_head_mount:
+              {}
+            blaise_ptu_mount:
+              {}
+            panda_left_link0:
+              panda_left_link1:
+                panda_left_link2:
+                  panda_left_link3:
+                    panda_left_link4:
+                      panda_left_link5:
+                        panda_left_link6:
+                          panda_left_link7:
+                            panda_left_link8:
+                              panda_left_EE:
+                                panda_left_K:
+                                  {}
+                              panda_left_hand:
+                                panda_left_leftfinger:
+                                  {}
+                                panda_left_rightfinger:
+                                  {}
+            panda_right_link0:
+              panda_right_link1:
+                panda_right_link2:
+                  panda_right_link3:
+                    panda_right_link4:
+                      panda_right_link5:
+                        panda_right_link6:
+                          panda_right_link7:
+                            panda_right_link8:
+                              panda_right_EE:
+                                panda_right_K:
+                                  {}
+                              panda_right_hand:
+                                panda_right_leftfinger:
+                                  {}
+                                panda_right_rightfinger:
+                                  {}
+          upper_body_link:
+            {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
@@ -230,107 +481,62 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
-    - Class: rviz/InteractiveMarkers
-      Enable Transparency: true
+    - Class: rviz/MarkerArray
       Enabled: true
-      Name: InteractiveMarkers
-      Show Axes: true
-      Show Descriptions: true
-      Show Visual Aids: true
-      Update Topic: /panda_dual/target_pose_marker/update
+      Marker Topic: /body_tracking_data
+      Name: MarkerArray
+      Namespaces:
+        "": true
+      Queue Size: 100
       Value: true
-    - Alpha: 1
-      Axes Length: 1
-      Axes Radius: 0.10000000149011612
-      Class: rviz/Pose
-      Color: 255; 25; 0
-      Enabled: false
-      Head Length: 0.30000001192092896
-      Head Radius: 0.10000000149011612
-      Name: Pose
-      Queue Size: 10
-      Shaft Length: 0.5
-      Shaft Radius: 0.05000000074505806
-      Shape: Arrow
-      Topic: /panda_dual/dual_arm_cartesian_impedance_controller/centering_frame_target_pose
-      Unreliable: false
-      Value: false
-    - Alpha: 1
-      Arrow Length: 0.30000001192092896
-      Axes Length: 0.30000001192092896
-      Axes Radius: 0.009999999776482582
-      Class: rviz/PoseArray
-      Color: 255; 25; 0
+    - Class: rviz/Image
       Enabled: true
-      Head Length: 0.07000000029802322
-      Head Radius: 0.029999999329447746
-      Name: PoseArray
-      Queue Size: 10
-      Shaft Length: 0.23000000417232513
-      Shaft Radius: 0.009999999776482582
-      Shape: Arrow (3D)
-      Topic: /right_rmg
-      Unreliable: false
-      Value: true
-    - Alpha: 1
-      Arrow Length: 0.30000001192092896
-      Axes Length: 0.30000001192092896
-      Axes Radius: 0.009999999776482582
-      Class: rviz/PoseArray
-      Color: 0; 255; 0
-      Enabled: true
-      Head Length: 0.07000000029802322
-      Head Radius: 0.029999999329447746
-      Name: PoseArray
-      Queue Size: 10
-      Shaft Length: 0.23000000417232513
-      Shaft Radius: 0.009999999776482582
-      Shape: Arrow (3D)
-      Topic: /left_rmg
-      Unreliable: false
-      Value: true
-    - Alpha: 1
-      Arrow Length: 0.30000001192092896
-      Axes Length: 0.30000001192092896
-      Axes Radius: 0.009999999776482582
-      Class: rviz/PoseArray
-      Color: 255; 255; 0
-      Enabled: true
-      Head Length: 0.07000000029802322
-      Head Radius: 0.029999999329447746
-      Name: PoseArray
-      Queue Size: 10
-      Shaft Length: 0.23000000417232513
-      Shaft Radius: 0.009999999776482582
-      Shape: Arrow (3D)
-      Topic: /right_goal
-      Unreliable: false
-      Value: true
-    - Alpha: 1
-      Arrow Length: 0.30000001192092896
-      Axes Length: 0.30000001192092896
-      Axes Radius: 0.009999999776482582
-      Class: rviz/PoseArray
-      Color: 0; 0; 255
-      Enabled: true
-      Head Length: 0.07000000029802322
-      Head Radius: 0.029999999329447746
-      Name: PoseArray
-      Queue Size: 10
-      Shaft Length: 0.23000000417232513
-      Shaft Radius: 0.009999999776482582
-      Shape: Arrow (3D)
-      Topic: /left_goal
+      Image Topic: /rgb/image_raw
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
       Unreliable: false
       Value: true
     - Class: rviz/MarkerArray
       Enabled: true
-      Marker Topic: visualization_marker_array
+      Marker Topic: /visualization_marker_array_hands
       Name: MarkerArray
       Namespaces:
-        {}
+        rmdvae_gen: true
       Queue Size: 100
       Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic: /points2
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
     - Class: rviz/Image
       Enabled: true
       Image Topic: /usb_cam_node/image_raw
@@ -371,7 +577,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.3325843811035156
+      Distance: 2.1236844062805176
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -379,17 +585,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.27057576179504395
-        Y: 0.382211297750473
-        Z: 0.45605164766311646
+        X: 1.3375850915908813
+        Y: -0.20786303281784058
+        Z: 0.4201120138168335
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.29979434609413147
+      Pitch: 0.3297957181930542
       Target Frame: <Fixed Frame>
-      Yaw: 0.963650107383728
+      Yaw: 1.1810142993927002
     Saved: ~
 Window Geometry:
   Displays:
@@ -399,7 +605,7 @@ Window Geometry:
   Hide Right Dock: true
   Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000054c000006ccfc020000000dfb0000001200530065006c0065006300740069006f006e00000001e10000009b000000b000fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000b0fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073000000006e000006cc0000018200fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001bc000001e20000000000000000fb0000002e004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d00200053006c00690064006500720000000000ffffffff0000000000000000fb000000120020002d00200053006c00690064006500720000000000ffffffff0000000000000000fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001ce000001d10000000000000000fb0000000a0049006d0061006700650300000841000000f2000004b7000003cb000000010000010f00000365fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003f000003650000013200fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b2000000000000000000000002000009fc00000189fc0100000002fb0000000a0049006d0061006700650100000000000009fc0000000000000000fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000d500000005efc0100000002fb0000000800540069006d0065010000000000000d50000006dc00fffffffb0000000800540069006d0065010000000000000450000000000000000000000d50000006cc00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000054c000006ccfc020000000cfb0000001200530065006c0065006300740069006f006e00000001e10000009b000000b000fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000b0fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073000000006e000006cc0000018200fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001bc000001e20000000000000000fb0000002e004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d00200053006c00690064006500720000000000ffffffff0000000000000000fb000000120020002d00200053006c00690064006500720000000000ffffffff0000000000000000fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001ce000001d10000000000000000000000010000010f00000365fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003f000003650000013200fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000d5000000189fc0100000003fc0000000000000d500000000000fffffffaffffffff0200000002fb0000000a0049006d006100670065030000007f0000047e000003dc0000031ffb0000000a0049006d00610067006503000000660000013c000004c5000002e9fb0000000a0049006d0061006700650100000000000009fc0000000000000000fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000d500000005efc0100000002fb0000000800540069006d0065010000000000000d50000006dc00fffffffb0000000800540069006d0065010000000000000450000000000000000000000d50000006cc00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:

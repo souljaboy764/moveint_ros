@@ -1,7 +1,7 @@
 <launch>
-	<node name="rmdn_node" type="rmdvae_kobo_node.py" pkg="rmdn_hri_ros" required="true" output="screen"/>
+	<node name="rmdn_node" type="rmdvae_kobo_handover_kinect.py" pkg="rmdn_hri_ros" required="true" output="screen"/>
 	<node pkg="rosbag" type="record" name="rosbag_record"
-       args="record -o combined /tf /panda_dual/joint_states /panda_dual/dual_arm_cartesian_impedance_controller/centering_frame_target_pose /visualization_marker_array /usb_cam_node/image_raw"/>   
+       args="record -o combined /tf /panda_dual/joint_states /body_tracking_data /panda_dual/multi_mode_controller/desired_joint_position /visualization_marker_array /usb_cam_node/image_raw /visualization_marker_array_hands /rgb/image_raw"/>   
 
 
 </launch>
