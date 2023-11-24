@@ -182,12 +182,12 @@ class NuitrackROS(NuitrackWrapper):
 			self._camerainfo_pub.publish(self._camerainfo)
 		
 		if self._viz_pub.get_num_connections() > 0 and len(skeleton)>0:
-			# for i in range(14):
-			for i in [10,11,12]:
+			for i in range(14):
+			# for i in [10,11,12]:
 				self._markerarray_msg.markers[i].pose = mat2Pose(skeleton[i])
 				
-			# for i in range(len(connections)):
-				if i!=12:
+			for i in range(len(connections)):
+				# if i!=12:
 					bone = connections[i]
 					self._markerarray_msg.markers[i+14].points[0].x = skeleton[joints_idx[bone[0]]-1,0]
 					self._markerarray_msg.markers[i+14].points[0].y = skeleton[joints_idx[bone[0]]-1,1]
@@ -203,11 +203,11 @@ class NuitrackROS(NuitrackWrapper):
 
 if __name__=="__main__":
 	rospy.init_node("nuitrack_node")
-	nuitrack = NuitrackROS(width=848, height=480, horizontal=False)
+	nuitrack = NuitrackROS(width=848, height=480, horizontal=True)
 	rate = rospy.Rate(500)
 	
 	t = TransformStamped()
-	t.header.frame_id = 'base_footprint'
+	t.header.frame_id = 'camera_link'
 	t.child_frame_id = 'hand'
 	broadcaster = tf2_ros.StaticTransformBroadcaster()
 	

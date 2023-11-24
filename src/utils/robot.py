@@ -206,7 +206,7 @@ class PepperKinematics:
 		
 		self._robot_state.joint_state.position = theta
 		
-		nll = 0.5*(np.dot(diff1,tmp1) + np.dot(diff2,tmp2)) + (not self._check_selfcollision_service(self._robot_state).is_colliding)*1000
+		nll = 0.5*(np.dot(diff1,tmp1) + np.dot(diff2,tmp2)) #+ (not self._check_selfcollision_service(self._robot_state).is_colliding)*1000
 		grad_nll = tmp1 + np.dot(jac_th.T,tmp2)
 
 		return nll, grad_nll
@@ -240,5 +240,5 @@ class PepperKinematics:
 			post_cov = None
 		if kwargs['options']['disp']:
 			print(res)
-			print(not self._check_selfcollision_service(self._robot_state).is_colliding)
+			# print(not self._check_selfcollision_service(self._robot_state).is_colliding)
 		return post_mean, post_cov
