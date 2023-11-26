@@ -4,9 +4,9 @@ import numpy as np
 import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-from rmdn_hri.networks import RMDVAE
+from networks import RMDVAE
 from nuitrack_node import NuitrackROS
-from phd_utils.phd_utils.nuitrack import joints_idx
+from phd_utils.nuitrack import joints_idx
 
 import rospy
 import tf2_ros
@@ -89,7 +89,7 @@ class RMDVAEHRINode:
 
 		self.robot_endeff_msg.markers.append(marker)
 
-	def observe_human_optitrack(self):
+	def observe_human(self):
 		try:
 			# human_right_transfom = self.tfBuffer.lookup_transform('base_link', 'right', rospy.Time(0))
 			human_left_transfom = self.tfBuffer.lookup_transform('base_link', 'left', rospy.Time(0))
@@ -135,7 +135,7 @@ class RMDVAEHRINode:
 			print('Starting', ((self.readings[:3] - current_readings[:3])**2).sum())
 		self.started = True
 
-	def step_optitrack(self):
+	def step(self):
 		if not self.started:
 			return
 
@@ -160,64 +160,6 @@ class RMDVAEHRINode:
 		self.goal_msg.header.stamp = stamp
 		self.goal_pub.publish(self.goal_msg)
 		self.markerarray_pub.publish(self.robot_endeff_msg)
-
-
-	def observe_human(self):
-		_, skeleton, self.stamp = self.nuitrack.update()
-		if len(skeleton)==0:
-			return
-		lhand_idx = joints_idx["left_wrist"] - 1
-		rhand_idx = joints_idx["right_wrist"] - 1
-
-		skeleton = (self.nuitrack.base2cam[:3,:3].dot(skeleton.T) + self.nuitrack.base2cam[:3,3:4]).T
-
-		rhand = skeleton[rhand_idx]
-		lhand = skeleton[lhand_idx]
-		self.make_marker(rhand[0], rhand[1], rhand[2], 1, 0, 0, self.stamp)
-		self.make_marker(lhand[0], lhand[1], lhand[2], 1, 0, 0, self.stamp)
-
-		idx_list = np.array([joints_idx[i] for i in ["left_shoulder", "left_elbow", "left_wrist", "right_shoulder", "right_elbow", "right_wrist"]]) - 1
-
-		current_readings = torch.Tensor(skeleton[idx_list]).to(device)
-
-
-		if self.history == []:
-			print('first')
-			x_pos = current_readings.flatten()[None]
-			self.history = torch.cat([x_pos, torch.zeros_like(x_pos)], dim=-1)
-		if not self.started and ((self.history[-1, [6,7,8,15,16,17]] - current_readings.flatten()[[6,7,8,15,16,17]])**2).sum() < 0.0005:
-			print('Not yet started. Current displacement:', ((self.history[-1, [6,7,8,15,16,17]] - current_readings.flatten()[[6,7,8,15,16,17]])**2).sum())
-			return
-		
-		x_pos = current_readings.flatten()[None]
-		x_vel = x_pos - self.history[-1, :18]
-		self.history = torch.vstack([self.history, torch.cat([x_pos, x_vel], dim=-1)])
-
-		if self.history.shape[0] < self.window_length:
-			return
-		if not self.started:
-			print('Starting',((self.history[-1, [6,7,8,15,16,17]] - current_readings.flatten()[[6,7,8,15,16,17]])**2).sum())
-		self.started = True
-		self.history = self.history[-self.window_length:]
-
-	def step(self):
-		if not self.started:
-			return
-
-		h_mean, h_std, h_alpha, r_out_h, r_out_components, self.hidden = self.model.forward_step(self.history.flatten()[None], self.hidden)
-		robot_right_goal = r_out_h[0, :3].cpu().numpy()
-		robot_left_goal = r_out_h[0, 3:6].cpu().numpy()
-		
-		self.make_marker(robot_right_goal[0], robot_right_goal[1], robot_right_goal[2], 0, 0, 1, self.stamp)
-		self.make_marker(robot_left_goal[0], robot_left_goal[1], robot_left_goal[2], 0, 0, 1, self.stamp)
-		for i in range(3):
-			self.make_marker(r_out_components[0, i, 0], r_out_components[0, i, 1], r_out_components[0, i, 2], cmap(cmap_idx[i])[0], cmap(cmap_idx[i])[1], cmap(cmap_idx[i])[2], self.stamp)
-			self.make_marker(r_out_components[0, i, 3], r_out_components[0, i, 4], r_out_components[0, i, 5], cmap(cmap_idx[i])[0], cmap(cmap_idx[i])[1], cmap(cmap_idx[i])[2], self.stamp)
-			
-		# self.goal_msg.header.stamp = self.stamp
-		# self.goal_pub.publish(self.goal_msg)
-		self.markerarray_pub.publish(self.robot_endeff_msg)
-	
 
 if __name__=='__main__':
 	with torch.no_grad():

@@ -18,9 +18,11 @@ The following python libraries need to be installed with pip
 - numpy
 - ikpy ([modified](https://github.com/souljaboy764/ikpy))
 
+Additionally clone and install the repository [`phd_utils`](https://github.com/souljaboy764/phd_utils) if not already done.
+
 For the skeleton tracking, Nuitrack needs to be installed. Follow the [instructions](https://github.com/3DiVi/nuitrack-sdk/blob/master/doc/Install.md) to install nuitrack. Once Nuitrack is installed and the license is activated, download the suitable [python wheel file for Nuitrack](https://github.com/3DiVi/nuitrack-sdk/tree/master/PythonNuitrack-beta/pip_packages/dist) and install it with `pip install /path/to/wheel.whl`
 
-Additionally, the Kinect drivers need to be installed if the Kinect-based controller is to be used: https://github.com/microsoft/Azure-Kinect-Sensor-SDK/issues/1263#issuecomment-710698591
+If the Kinect is to be used, the Kinect drivers need to be installed if the Kinect-based controller is to be used: https://github.com/microsoft/Azure-Kinect-Sensor-SDK/issues/1263#issuecomment-710698591
 
 ### ROS Packages
 
