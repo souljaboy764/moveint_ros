@@ -18,8 +18,8 @@ pkgPath = rospkg.RosPack()
 
 from rmdn_hri.networks import RMDVAE
 from nuitrack_node import NuitrackROS
-from utils.nuitrack import joints_idx
-from utils.helper import *
+from phd_utils.phd_utils.nuitrack import joints_idx
+from phd_utils.phd_utils.helper import *
 
 from matplotlib.pyplot import get_cmap
 cmap = get_cmap('viridis')

@@ -6,7 +6,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 from rmdn_hri.networks import RMDVAE
 from nuitrack_node import NuitrackROS
-from utils.nuitrack import joints_idx
+from phd_utils.phd_utils.nuitrack import joints_idx
 
 import rospy
 import tf2_ros
