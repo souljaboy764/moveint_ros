@@ -5,8 +5,8 @@ import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 from networks import RMDVAE
-from nuitrack_node import NuitrackROS
-from phd_utils.nuitrack import joints_idx
+# from nuitrack_node import NuitrackROS
+# from phd_utils.nuitrack import joints_idx
 
 import rospy
 import tf2_ros
@@ -23,30 +23,30 @@ cmap_idx = [0.5, 0.2, 0.9]
 
 class RMDVAEHRINode:
 	def __init__(self, ckpt_path):
-		self.window_length=5
-		input_dim=36*self.window_length
+		self.window_length=1
+		input_dim=6*self.window_length
 		self.readings = torch.zeros((input_dim,), device=device)
 		ckpt = torch.load(ckpt_path)
 		self.model = RMDVAE(input_dim,6*self.window_length,ckpt['args']).to(device)
 		self.model.load_state_dict(ckpt['model'])
 		self.model.eval()
 
-		# self.tfBuffer = tf2_ros.Buffer()
-		# self.listener = tf2_ros.TransformListener(self.tfBuffer)
-		# try:
-		# 	self.baselink2leftlink0 = self.tfBuffer.lookup_transform('panda_left_link0', 'base_link', rospy.Time(0), rospy.Duration(1.0))
-		# except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
-		# 	rospy.loginfo('No transform between base_link and panda_left_link0')
-		# 	rospy.signal_shutdown('No transform between base_link and panda_left_link0')
-		# 	return
+		self.tfBuffer = tf2_ros.Buffer()
+		self.listener = tf2_ros.TransformListener(self.tfBuffer)
+		try:
+			self.baselink2leftlink0 = self.tfBuffer.lookup_transform('panda_left_link0', 'base_link', rospy.Time(0), rospy.Duration(1.0))
+		except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
+			rospy.loginfo('No transform between base_link and panda_left_link0')
+			rospy.signal_shutdown('No transform between base_link and panda_left_link0')
+			return
 
-		# self.goal_pub = rospy.Publisher('/panda_dual/dual_arm_cartesian_impedance_controller/centering_frame_target_pose', PoseStamped, queue_size=10)
-		# self.goal_msg = PoseStamped()
-		# self.goal_msg.header.frame_id = 'panda_left_link0'
-		# self.goal_msg.pose.orientation.x = 0.4618
-		# self.goal_msg.pose.orientation.y = -0.7329
-		# self.goal_msg.pose.orientation.z = 0.1907
-		# self.goal_msg.pose.orientation.w = 0.4618
+		self.goal_pub = rospy.Publisher('/panda_dual/dual_arm_cartesian_impedance_controller/centering_frame_target_pose', PoseStamped, queue_size=10)
+		self.goal_msg = PoseStamped()
+		self.goal_msg.header.frame_id = 'panda_left_link0'
+		self.goal_msg.pose.orientation.x = 0.4618
+		self.goal_msg.pose.orientation.y = -0.7329
+		self.goal_msg.pose.orientation.z = 0.1907
+		self.goal_msg.pose.orientation.w = 0.4618
 
 		self.robot_endeff_msg = MarkerArray()
 		self.markerarray_pub = rospy.Publisher('/visualization_marker_array_hands', MarkerArray, queue_size=10)
@@ -54,7 +54,7 @@ class RMDVAEHRINode:
 		self.started = False
 		self.hidden = None
 
-		self.nuitrack = NuitrackROS(height=480, width=848, horizontal=True)
+		# self.nuitrack = NuitrackROS(height=480, width=848, horizontal=True)
 		self.history = []
 		self.stamp = None
 
@@ -91,7 +91,7 @@ class RMDVAEHRINode:
 
 	def observe_human(self):
 		try:
-			# human_right_transfom = self.tfBuffer.lookup_transform('base_link', 'right', rospy.Time(0))
+			human_right_transfom = self.tfBuffer.lookup_transform('base_link', 'right', rospy.Time(0))
 			human_left_transfom = self.tfBuffer.lookup_transform('base_link', 'left', rospy.Time(0))
 			# robot_right_transfom = self.tfBuffer.lookup_transform('base_link', 'panda_right_link8', rospy.Time(0))
 			# robot_left_transfom = self.tfBuffer.lookup_transform('/base_link', '/panda_left_link8', rospy.Time(0))
@@ -99,7 +99,7 @@ class RMDVAEHRINode:
 			return
 
 		stamp = rospy.Time.now()
-		# self.make_marker(human_right_transfom.transform.translation.x, human_right_transfom.transform.translation.y, human_right_transfom.transform.translation.z, 1, 0, 0, stamp)
+		self.make_marker(human_right_transfom.transform.translation.x, human_right_transfom.transform.translation.y, human_right_transfom.transform.translation.z, 1, 0, 0, stamp)
 		self.make_marker(human_left_transfom.transform.translation.x, human_left_transfom.transform.translation.y, human_left_transfom.transform.translation.z, 1, 0, 0, stamp)
 		current_readings = torch.Tensor([
 								# human_right_transfom.transform.translation.x, human_right_transfom.transform.translation.y, human_right_transfom.transform.translation.z,
@@ -120,7 +120,7 @@ class RMDVAEHRINode:
 			# 										human_left_transfom.transform.translation.z - robot_right_transfom.transform.translation.z
 			# ]).to(device)
 			return
-		if not self.started and ((self.readings[:3] - current_readings[:3])**2).sum() < 0.0005:
+		if not self.started and ((self.readings[:3] - current_readings[:3])**2).sum() < 0.001:
 			# print('Not yet started. Current displacement:', ((self.readings[:6] - current_readings[:6])**2).sum())
 			return
 		
@@ -164,9 +164,9 @@ class RMDVAEHRINode:
 if __name__=='__main__':
 	with torch.no_grad():
 		rospy.init_node('rmdn_hri_node')
-		rate = rospy.Rate(30)
+		rate = rospy.Rate(25)
 		print('creating Controller')
-		controller = RMDVAEHRINode(os.path.join(pkgPath.get_path('rmdn_hri_ros'),'models_final/rmdvae_nuitrack_kobo.pth'))
+		controller = RMDVAEHRINode(os.path.join(pkgPath.get_path('rmdn_hri_ros'),'models_final/rmdvae_kobo_leftin_bihandover.pth'))
 		controller.observe_human()
 		rate.sleep()
 		controller.observe_human()
@@ -177,14 +177,15 @@ if __name__=='__main__':
 		rate.sleep()
 		while not rospy.is_shutdown():
 			controller.observe_human()
-			# if torch.all(controller.history.shape==torch.zeros_like(controller.readings)):
-			if len(controller.history)==0:
+			if torch.all(controller.readings==torch.zeros_like(controller.readings)):
+			# if len(controller.history)==0:
 				rate.sleep()
 				continue
 
 			count += 1
 			if count<70:
-				hand_pos.append(controller.history[-1, 15:18].cpu().numpy())
+				# hand_pos.append(controller.history[-1, 15:18].cpu().numpy())
+				hand_pos.append(controller.readings[:3].cpu().numpy())
 				# print(count, hand_pos[-1])
 				rate.sleep()
 				continue
@@ -197,7 +198,8 @@ if __name__=='__main__':
 
 				controller.step()
 				# print(count, controller.readings[:6].cpu().numpy(), ((controller.readings[:6].cpu().numpy() - hand_pos)**2).sum())
-				if count > 150 and ((controller.history[-1, 15:18].cpu().numpy() - hand_pos)**2).sum() < 0.03:
+				# if count > 150 and ((controller.history[-1, 15:18].cpu().numpy() - hand_pos)**2).sum() < 0.03:
+				if count > 200 and ((controller.readings[:3].cpu().numpy() - hand_pos)**2).sum() < 0.03:
 					controller.goal_msg.pose.position.x = 0.336
 					controller.goal_msg.pose.position.y = -0.349
 					controller.goal_msg.pose.position.z = 0.121
@@ -207,7 +209,8 @@ if __name__=='__main__':
 					controller.goal_msg.header.stamp = rospy.Time.now()
 					controller.goal_pub.publish(controller.goal_msg)
 					rospy.Rate(1).sleep()
-					print('shutting down', count, ((controller.history[-1, 15:18].cpu().numpy() - hand_pos)**2).sum())
+					# print('shutting down', count, ((controller.history[-1, 15:18].cpu().numpy() - hand_pos)**2).sum())
+					print('shutting down', count, ((controller.readings[:3].cpu().numpy() - hand_pos)**2).sum())
 					rospy.signal_shutdown('Done')
 
 			rate.sleep()
