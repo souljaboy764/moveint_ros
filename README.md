@@ -1,11 +1,6 @@
-Start up the robot scripts from by running `prepare_kobo.launch` or `prepare_pepper.launch`
+# moveint_ros
 
-once they are setup and the user is ready, run `rmdn_kobo.launch` or `rmdn_pepper.launch`
-
-
-# rmdn_hri_ros
-
-ROS Package to run the [RMDN-HRI](https://github.com/souljaboy764/rmdn_hri) models on the Pepper Robot and the Kobo Robot for Root-to-Human Handovers.
+ROS Package to run the [MoVEInt](https://github.com/souljaboy764/moveint) models on the Pepper Robot and the Kobo Robot for Robot-to-Human Handovers.
 
 ## Dependencies
 
@@ -39,7 +34,7 @@ Once the prerequisites are installed, clone this repository to your catkin works
 
 ```bash
 cd /path/to/catkin_ws/src
-git clone https://github.com/souljaboy764/rmdn_hri_ros
+git clone https://github.com/souljaboy764/moveint_ros
 cd ..
 catkin_make
 ```
@@ -57,7 +52,7 @@ The pretrained models are available with this repository in the `models_final` f
     source /path/to/current_ws/devel/setup.bash
     ```
 
-2. Run `roslaunch rmdn_hri_ros prepare_pepper.launch` after setting the IP of the Pepper robot and the network interface accordingly to get the setup ready. This launches the robot nodes, the transformation between the camera and the robot, collision avoidance etc.
+2. Run `roslaunch moveint_ros prepare_pepper.launch` after setting the IP of the Pepper robot and the network interface accordingly to get the setup ready. This launches the robot nodes, the transformation between the camera and the robot, collision avoidance etc.
 
 3. For the external calibration, after starting up the robot with [`naoqi_dcm_driver`](https://github.com/souljaboy764/naoqi_dcm_driver), and `nuitrack_node.py` to start nuitrack, run `rosrun rqt_reconfigure rqt_reconfigure gui:=true` and change the values of the transofrmation until the external calibration is satisfactory. Save these values from the dynamic reconfigrue GUI in [`config/nuitrack_pepper_tf.yaml`](config/nuitrack_pepper_tf.yaml).
 
@@ -67,13 +62,13 @@ Run steps 1 and 2 from above to setup the experiment to start up the robot.
 
 First, reset the robot by running
 
-`rosrun rmdn_hri_ros reset_pepper.py 0`
+`rosrun moveint_ros reset_pepper.py 0`
 
 The 0 is to close the hand so that pepper holds the object in question. if the hand needs to be opened, use a suitable positive value less than 1 as 1 is fully open.
 
 For running the controller:
 
-`rosrun rmdn_hri_ros rmdvae_pepper_node.py`
+`rosrun moveint_ros rmdvae_pepper_node.py`
 
 This starts the controller node as well as Nuitrack. For the fist 1-2 seconds stand still as the controller calibrates the human's neutral position, which is used for terminating the interaction when the human returns their hand to this neutral position.
 
@@ -89,7 +84,7 @@ This starts the controller node as well as Nuitrack. For the fist 1-2 seconds st
     export ROS_IP=10.10.0.182
     ```
 
-3. Run `roslaunch rmdn_hri_ros prepare_kobo.launch`.
+3. Run `roslaunch moveint_ros prepare_kobo.launch`.
 
 4. External calibration
     4a. For external calibration with Nuitrack, run `nuitrack_node.py` to start nuitrack and then run `rosrun rqt_reconfigure rqt_reconfigure gui:=true` and change the values of the transofrmation until the external calibration is satisfactory. Save these values from the dynamic reconfigrue GUI in [`config/kobo-nuitrack-calib.yaml`](config/kobo-nuitrack-calib.yaml).
@@ -101,12 +96,12 @@ Run steps 1, 2 and 3 from above to setup the experiment to start up the robot.
 
 First, reset the robot by running
 
-`rosrun rmdn_hri_ros reset_kobo.py`
+`rosrun moveint_ros reset_kobo.py`
 
 This will place the Kobo in a suitable location. Then place the object between its hands
 
 For running the controller, start the ROS node corresponding to the perception system that is being used:
 
-`rosrun rmdn_hri_ros rmdvae_kobo_node_(kinect|nuitrack|optitrack).py`
+`rosrun moveint_ros rmdvae_kobo_node.py`
 
 This starts the controller node as well as Nuitrack. For the fist 1-2 seconds stand still as the controller calibrates the human's neutral position, which is used for terminating the interaction when the human returns their hand to this neutral position.

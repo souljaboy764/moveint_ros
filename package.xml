@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rmdn_hri_ros</name>
+  <name>moveint_ros</name>
   <version>0.0.0</version>
-  <description>ROS Package to run the RMDN-HRI models on the Kobo Robot</description>
+  <description>ROS Package to run the MoVEInt models on the Kobo/Pepper Robots</description>
 
   <maintainer email="vignesh.prasad@tu-darmstadt.de">Vignesh Prasad</maintainer>
   <license>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</license>
