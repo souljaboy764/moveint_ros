@@ -1,0 +1,7 @@
+<launch>
+	<node name="moveint_pepper_node" type="moveint_pepper_node.py" pkg="moveint_hri_ros" required="true" output="screen"/>
+	<node pkg="rosbag" type="record" name="rosbag_record"
+       args="record -o moveint_pepper /tf /joint_states /display_robot_state /visualization_marker_array /webcam_image /image_display /image_depth /image_color"/>   
+
+
+</launch>

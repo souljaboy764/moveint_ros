@@ -4,7 +4,7 @@
 	<arg name="network_interface" default="eno1" />
 	<node name="dynparam_load" type="dynparam" pkg="dynamic_reconfigure" args="load /tf_dynreconf_node $(find mild_hri_ros)/config/nuitrack_pepper_tf.yaml"/>
 
-	<include file="$(find rmdn_hri_ros)/launch/pepper_bringup.launch">
+	<include file="$(find moveint_ros)/launch/pepper_bringup.launch">
 		<arg name="robot_ip" value="$(arg robot_ip)"/>
 		<arg name="network_interface" value="$(arg network_interface)"/>
 	</include> -->

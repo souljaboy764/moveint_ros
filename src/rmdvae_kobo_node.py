@@ -4,7 +4,7 @@ import numpy as np
 import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-from networks import RMDVAE
+from networks import MoVEInt
 # from nuitrack_node import NuitrackROS
 # from phd_utils.nuitrack import joints_idx
 
@@ -21,13 +21,13 @@ from matplotlib.pyplot import get_cmap
 cmap = get_cmap('viridis')
 cmap_idx = [0.5, 0.2, 0.9]
 
-class RMDVAEHRINode:
+class MoVEIntKoboNode:
 	def __init__(self, ckpt_path):
 		self.window_length=1
 		input_dim=6*self.window_length
 		self.readings = torch.zeros((input_dim,), device=device)
 		ckpt = torch.load(ckpt_path)
-		self.model = RMDVAE(input_dim,6*self.window_length,ckpt['args']).to(device)
+		self.model = MoVEInt(input_dim,6*self.window_length,ckpt['args']).to(device)
 		self.model.load_state_dict(ckpt['model'])
 		self.model.eval()
 
@@ -163,10 +163,10 @@ class RMDVAEHRINode:
 
 if __name__=='__main__':
 	with torch.no_grad():
-		rospy.init_node('rmdn_hri_node')
+		rospy.init_node('moveint_kobo_node')
 		rate = rospy.Rate(25)
 		print('creating Controller')
-		controller = RMDVAEHRINode(os.path.join(pkgPath.get_path('rmdn_hri_ros'),'models_final/rmdvae_kobo_leftin_bihandover.pth'))
+		controller = MoVEIntKoboNode(os.path.join(pkgPath.get_path('moveint_ros'),'models_final/moveint_kobo_leftin_bihandover.pth'))
 		controller.observe_human()
 		rate.sleep()
 		controller.observe_human()

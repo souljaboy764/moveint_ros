@@ -1,7 +1,0 @@
-<launch>
-	<node name="rmdn_node" type="rmdn_pepper_node.py" pkg="rmdn_hri_ros" required="true" output="screen"/>
-	<node pkg="rosbag" type="record" name="rosbag_record"
-       args="record -o rmdvae_pepper /tf /joint_states /display_robot_state /visualization_marker_array /webcam_image /image_display /image_depth /image_color"/>   
-
-
-</launch>

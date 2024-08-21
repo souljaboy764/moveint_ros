@@ -17,8 +17,6 @@ Additionally clone and install the repository [`phd_utils`](https://github.com/s
 
 For the skeleton tracking, Nuitrack needs to be installed. Follow the [instructions](https://github.com/3DiVi/nuitrack-sdk/blob/master/doc/Install.md) to install nuitrack. Once Nuitrack is installed and the license is activated, download the suitable [python wheel file for Nuitrack](https://github.com/3DiVi/nuitrack-sdk/tree/master/PythonNuitrack-beta/pip_packages/dist) and install it with `pip install /path/to/wheel.whl`
 
-If the Kinect is to be used, the Kinect drivers need to be installed if the Kinect-based controller is to be used: https://github.com/microsoft/Azure-Kinect-Sensor-SDK/issues/1263#issuecomment-710698591
-
 ### ROS Packages
 
 The following packages need to be installed to your catkin workspace:
@@ -26,7 +24,6 @@ The following packages need to be installed to your catkin workspace:
 - [naoqi_dcm_driver](https://github.com/souljaboy764/naoqi_dcm_driver) (along with the rest of the Pepper robot ROS stack)
 - [tf_dynreconf](https://github.com/souljaboy764/tf_dynreconf)
 - [pepper_controller_server](https://github.com/souljaboy764/pepper_controller_server)
-- [Azure_Kinect_ROS_Driver](https://github.com/microsoft/Azure_Kinect_ROS_Driver)
 
 ## Installation
 

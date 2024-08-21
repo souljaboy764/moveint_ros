@@ -6,7 +6,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 from ikpy.chain import Chain
 
-from rmdn_hri.networks import RMDVAE
+from networks import MoVEInt
 
 import rospy
 import tf2_ros
@@ -31,12 +31,12 @@ cmap_idx = [0.5, 0.2, 0.9]
 
 default_arm_joints = [1.5708, -0.109, 0.7854, 0.009, 1., 0.] # default standing angle values
 
-class RMDVAEHRINode:
+class MoVEIntPepperNode:
 	def __init__(self, ckpt_path):
 		super().__init__()
 		input_dim=18*5
 		ckpt = torch.load(ckpt_path)
-		self.model = RMDVAE(input_dim,20,ckpt['args']).to(device)
+		self.model = MoVEInt(input_dim,20,ckpt['args']).to(device)
 		self.model.load_state_dict(ckpt['model'])
 		self.model.eval()
 
@@ -186,10 +186,10 @@ class RMDVAEHRINode:
 		# Some IK based on the distance of the robot hand to the human hand
 
 if __name__=='__main__':
-	rospy.init_node('rmdn_hri_node')
+	rospy.init_node('moveint_pepper_node')
 	rate = rospy.Rate(100)
 	print('creating Controller')
-	controller = RMDVAEHRINode(os.path.join(rospack.get_path('rmdn_hri_ros'),'models_final/rmdvae_nuisi_pepper.pth'))
+	controller = MoVEIntPepperNode(os.path.join(rospack.get_path('moveint_ros'),'models_final/moveint_nuisi_pepper.pth'))
 	controller.observe_human()
 	count = 0
 	hand_pos_init = []

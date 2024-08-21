@@ -1,7 +1,0 @@
-<launch>
-	<node name="rmdn_node" type="rmdvae_kobo_node_optitrack.py" pkg="rmdn_hri_ros" required="true" output="screen"/>
-	<node pkg="rosbag" type="record" name="rosbag_record"
-       args="record -o combined /tf /panda_dual/joint_states /body_tracking_data /panda_dual/multi_mode_controller/desired_joint_position /visualization_marker_array /usb_cam/image_raw /visualization_marker_array_hands"/>   
-
-
-</launch>

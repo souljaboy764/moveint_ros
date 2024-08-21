@@ -7,7 +7,7 @@
   <maintainer email="vignesh.prasad@tu-darmstadt.de">Vignesh Prasad</maintainer>
   <license>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</license>
 
-  <url type="website">https://sites.google.com/view/rmdn-hri</url>
+  <url type="website">https://bit.ly/MoVEInt</url>
 
   <buildtool_depend>catkin</buildtool_depend>
   <depend>image_transport</depend>
